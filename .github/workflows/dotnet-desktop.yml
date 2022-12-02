@@ -35,9 +35,9 @@ jobs:
         run: dotnet build --configuration Release
         
       - name:  Install Google Chrome 
-        run:   |
-                chmod +x ./scripts/InstallChrome.sh
-                            ./scripts/InstallChrome.sh 
+        run: |
+          chmod +x ./scripts/InstallChrome.sh
+            ./scripts/InstallChrome.sh
         
       - name: Test
         run: dotnet test
