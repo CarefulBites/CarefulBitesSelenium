@@ -7,26 +7,41 @@ using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Chrome;
 
 namespace CarefulBitesSelenium;
 
 [TestClass]
 public class UnitTest1
 {
+#if DEBUG
     private static readonly string DriverDirectory = "C:\\Users\\mads6\\OneDrive\\Dokumenter\\Kode\\webDrivers";
     //private static readonly string DriverDirectory = "C:\\Users\\Mads\\OneDrive\\Dokumenter\\Skole\\webDrivers";
     // Download drivers to your driver folder.
     // Driver version must match your browser version.
     // http://chromedriver.chromium.org/downloads
+#endif
+#if RELEASE
+    private static readonly string DriverDirectory = "google-chrome-stable";
+#endif
 
     private static IWebDriver _driver;
 
     [ClassInitialize]
     public static void Setup(TestContext context)
     {
+
+#if DEBUG
         //_driver = new ChromeDriver(DriverDirectory); // fast
         _driver = new FirefoxDriver(DriverDirectory); // slow
         //_driver = new EdgeDriver(DriverDirectory); //  not working ...
+#endif
+#if RELEASE
+        _driver = new ChromeDriver(DriverDirectory); // fast
+        //_driver = new FirefoxDriver(DriverDirectory); // slow
+        //_driver = new EdgeDriver(DriverDirectory); //  not working ...
+#endif
+
         _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
         var url = "https://carefulbitesfrontend.azurewebsites.net/";
