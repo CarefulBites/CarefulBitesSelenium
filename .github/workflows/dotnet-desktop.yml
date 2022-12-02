@@ -40,4 +40,4 @@ jobs:
             ./scripts/InstallChrome.sh
         
       - name: Test
-        run: dotnet test
+        run: dotnet test --configuration Release
