@@ -106,6 +106,6 @@ public class UnitTest1
         var loginButton = _driver.FindElement(By.XPath("//*[contains(@aria-label, 'Create Account')]"));
         loginButton.Click();
 
-        Thread.Sleep(1000);
+        Thread.Sleep(2000);
     }
 }
